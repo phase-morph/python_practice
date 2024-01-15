@@ -1,6 +1,5 @@
 # Python regular practice #
 
-import math
 
 # (VH) EDABIT CHALLANGE #40: A subtle switcheroo
 
