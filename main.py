@@ -17,7 +17,6 @@ input_strings = ["ThNTSe elephaNTS in FraNCE were cNCEhased by aNTS!", "The elep
 
 
 def switcheroo(inp: str) -> str:
-
     lst = [word for word in inp.split(" ")]
 
     substring_1 = "NTS"
@@ -44,3 +43,28 @@ def switcheroo(inp: str) -> str:
 
 
 [print(switcheroo(phrase)) for phrase in input_strings]
+
+
+# 41 (VH): Matrix Multiplication
+
+
+# matrix_mult([[4, 2],[3, 1]], [[5, 6], [3, 8]]) ➞ [[26, 40], [18, 26]]
+
+# matrix_mult([[3, 6],[4, 5]], [[8, 1], [7, 2]]) ➞ [[66, 15], [67, 14]]
+
+# matrix_mult([[7, 5],[2, 2]], [[6, 7], [3, 2]]) ➞ [[57, 59], [18, 18]]
+
+input_values = [[[4, 2], [3, 1]], [[5, 6], [3, 8]]]
+
+
+def matrix_mult(lst: list):
+    import numpy as np
+    array_lst = []
+
+    for matrix in lst:
+        array_lst.append(np.array(matrix))
+
+    return np.dot(array_lst[0], array_lst[1])
+
+
+print(matrix_mult(input_values), type(matrix_mult(input_values)))
