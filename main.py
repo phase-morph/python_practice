@@ -1,7 +1,8 @@
-# Python regular practice #
+# Regular Python EDABIT practice #
 
 
-# (VH) EDABIT CHALLANGE #40: A subtle switcheroo
+# 40 (VH): A subtle switcheroo
+
 
 # Examples:
 
