@@ -48,6 +48,8 @@ def switcheroo(inp: str) -> str:
 # 41 (VH): Matrix Multiplication
 
 
+# Examples:
+
 # matrix_mult([[4, 2],[3, 1]], [[5, 6], [3, 8]]) ➞ [[26, 40], [18, 26]]
 
 # matrix_mult([[3, 6],[4, 5]], [[8, 1], [7, 2]]) ➞ [[66, 15], [67, 14]]
@@ -68,3 +70,42 @@ def matrix_mult(lst: list):
 
 
 print(matrix_mult(input_values), type(matrix_mult(input_values)))
+
+
+# 42 (VH): Identity Matrix
+
+
+# Examples:
+
+# id_mtrx(2) ➞ [
+#   [1, 0],
+#   [0, 1]
+# ]
+
+# id_mtrx(-2) ➞ [
+#   [0, 1],
+#   [1, 0]
+# ]
+
+# id_mtrx(0) ➞ []
+
+
+def id_mtrx(input_int: int) -> list:
+    id_matrix = []
+    if input_int == 0:
+        return []
+
+    for i in range(abs(input_int)):
+
+        child_matrix = []
+        for j in range(abs(input_int)):
+            if j == i:
+                child_matrix.append(1)
+            else:
+                child_matrix.append(0)
+        id_matrix.append(child_matrix)
+
+    return id_matrix if input_int > 0 else list(reversed(id_matrix))
+
+
+print(id_mtrx(-7))
