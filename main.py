@@ -109,3 +109,35 @@ def id_mtrx(input_int: int) -> list:
 
 
 print(id_mtrx(-7))
+
+
+# 43 (VH): Maximum and Minimum Product Triplets
+
+
+# Examples:
+
+# max_product([-8, -9, 1, 2, 7]) ➞ 504
+#
+# max_product([-8, 1, 2, 7, 9]) ➞ 126
+#
+# min_product([1, -1, 1, 1]) ➞ -1
+#
+# min_product([-5, -3, -1, 0, 4]) ➞ -15
+
+
+def max_product(input_list: list, n: int) -> int:
+    if n < 3:
+        return -1
+
+    _max_product = 0
+
+    for i in range(0, n - 2):
+        for j in range(i + 1, n - 1):
+            for k in range(j + 1, n):
+                _max_product = max(_max_product, input_list[i] * input_list[j] * input_list[k])
+
+    return _max_product
+
+
+for sample in [[-8, -9, 1, 2, 7], [-8, 1, 2, 7, 9]]:
+    print(max_product(sample, len(sample)))
