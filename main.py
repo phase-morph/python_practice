@@ -141,3 +141,39 @@ def max_product(input_list: list, n: int) -> int:
 
 for sample in [[-8, -9, 1, 2, 7], [-8, 1, 2, 7, 9]]:
     print(max_product(sample, len(sample)))
+
+
+# (Misc.) Find the longest common prefix in a list of words
+
+
+list_of_words = ["flower", "flow", "flight"]
+
+
+def longest_common_prefix(input_list: list):
+    import sys
+    min_length = sys.maxsize
+    index_of_min_length = 0
+
+    for word in input_list:
+        if len(word) < min_length:
+            min_length = len(word)
+            index_of_min_length = input_list.index(word)
+
+    min_length_word = input_list[index_of_min_length]
+    input_list.remove(min_length_word)
+    longest_prefix = ""
+
+    for char_pos in range(len(min_length_word)):
+        is_common = True
+        for word in input_list:
+            if min_length_word[char_pos] != word[char_pos]:
+                is_common = False
+        if is_common:
+            longest_prefix += min_length_word[char_pos]
+        else:
+            if longest_prefix == "":
+                return "There is no common prefix between these words."
+    return longest_prefix
+
+
+print(longest_common_prefix(list_of_words))
