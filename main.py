@@ -177,3 +177,20 @@ def longest_common_prefix(input_list: list):
 
 
 print(longest_common_prefix(list_of_words))
+
+
+# (Misc.) Find the first double occurring character
+
+
+word = "appointment"
+
+
+for char_pos in range(len(word)):
+    if char_pos == 0:
+        if word[char_pos] == word[char_pos + 1]:
+            print("{} is the first character occurring twice".format(word[char_pos]))
+            break
+    else:
+        if word[char_pos] == word[char_pos - 1]:
+            print("{} is the first character occurring twice".format(word[char_pos]))
+            break
