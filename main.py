@@ -194,3 +194,57 @@ for char_pos in range(len(word)):
         if word[char_pos] == word[char_pos - 1]:
             print("{} is the first character occurring twice".format(word[char_pos]))
             break
+
+
+# 44 (EXP): SUBSTRINGS
+
+
+# longest_substring("225424272163254474441338664823") ➞ "272163254"
+# substrings = 254, 272163254, 474, 41, 38, 23
+#
+# longest_substring("594127169973391692147228678476") ➞ "16921472"
+# substrings = 94127, 169, 16921472, 678, 476
+#
+# longest_substring("721449827599186159274227324466") ➞ "7214"
+# substrings = 7214, 498, 27, 18, 61, 9274, 27, 32
+# 7214 and 9274 have same length, but 7214 occurs first.
+
+
+def build_substring_list(string: str) -> list:
+
+    # Helper inner utility function
+    def extract_substring(sliced_string: str) -> tuple:
+        substring = sliced_string[0]
+
+        # Handling edge cases
+        if len(sliced_string) == 2 or len(sliced_string) == 3:
+            return sliced_string, len(sliced_string)
+        else:
+            for _char_pos, _char in enumerate(sliced_string[1:]):
+                if (int(sliced_string[_char_pos]) + int(sliced_string[_char_pos + 1])) % 2 != 0:
+                    substring += sliced_string[_char_pos + 1]
+                else:
+                    return substring, len(substring)
+
+    working_string = string[:]
+    list_of_substrings = []
+    iteration = 0
+
+    for char_pos, char in enumerate(working_string):
+        iteration += 1
+        try:
+            if (int(working_string[char_pos]) + int(working_string[char_pos + 1])) % 2 != 0:
+                returned_tuple = extract_substring(working_string[char_pos:])
+                list_of_substrings.append(returned_tuple[0])
+                working_string = working_string[returned_tuple[1] - 1:]
+            else:
+                continue
+        except IndexError:
+            return list_of_substrings
+
+
+print([
+    build_substring_list(case) for case in ["225424272163254474441338664823",
+                                            "594127169973391692147228678476",
+                                            "721449827599186159274227324466"]
+])
