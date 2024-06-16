@@ -210,7 +210,7 @@ for char_pos in range(len(word)):
 # 7214 and 9274 have same length, but 7214 occurs first.
 
 
-def build_substring_list(string: str) -> list:
+def longest_substring(string: str) -> tuple:
 
     # Helper inner utility function
     def extract_substring(sliced_string: str) -> tuple:
@@ -228,10 +228,8 @@ def build_substring_list(string: str) -> list:
 
     working_string = string[:]
     list_of_substrings = []
-    iteration = 0
 
     for char_pos, char in enumerate(working_string):
-        iteration += 1
         try:
             if (int(working_string[char_pos]) + int(working_string[char_pos + 1])) % 2 != 0:
                 returned_tuple = extract_substring(working_string[char_pos:])
@@ -240,11 +238,17 @@ def build_substring_list(string: str) -> list:
             else:
                 continue
         except IndexError:
-            return list_of_substrings
+
+            list_of_substrings_sizes = [len(i) for i in list_of_substrings]
+            print(list_of_substrings_sizes)
+
+            return (list_of_substrings,
+                    list_of_substrings_sizes,
+                    list_of_substrings[list_of_substrings_sizes.index(max(list_of_substrings_sizes))])
 
 
 print([
-    build_substring_list(case) for case in ["225424272163254474441338664823",
-                                            "594127169973391692147228678476",
-                                            "721449827599186159274227324466"]
+    longest_substring(case) for case in ["225424272163254474441338664823",
+                                         "594127169973391692147228678476",
+                                         "721449827599186159274227324466"]
 ])
